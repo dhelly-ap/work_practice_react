@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "title": "Сохраняй",
+    "description": "Вклад, который поможет сберечь накопления и получить достойный доход",
+    "img": "https://www.sberbank.ru/common/img/uploaded/redirected/depositsnew/static/save.jpg",
+    "rate": 5.75,
+    "removing": false,
+    "adding": false
+  },
+  {
+    "id": 2,
+    "title": "Пополняй",
+    "description": "Вклад, который поможет накопить нужную сумму",
+    "img": "https://www.sberbank.ru/common/img/uploaded/redirected/depositsnew/static/replenish.jpg",
+    "rate": 5.3,
+    "removing": false,
+    "adding": true
+  },
+  {
+    "id": 3,
+    "title": "Управляй",
+    "description": "Вклад с частичным снятием без потери процентов",
+    "img": "https://www.sberbank.ru/common/img/uploaded/redirected/depositsnew/static/manage.jpg",
+    "rate": 5,
+    "removing": true,
+    "adding": true
+  },
+  {
+    "id": 4,
+    "title": "Социальный",
+    "description": "Специальный вклад, на который зачисляются социальные выплаты детям-сиротам и ветеранам войны",
+    "img": "https://www.sberbank.ru/common/img/uploaded/redirected/depositsnew/static/social.jpg",
+    "rate": 4.75,
+    "removing": true,
+    "adding": true
+  }
+
+]
