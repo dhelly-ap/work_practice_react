@@ -7,43 +7,93 @@
     font-family: 'Open Sans Regular';
     src: url("./fonts/OpenSans-Regular.ttf") format("truetype");
 }
-/**{*/
-/*    box-sizing: border-box;*/
-/*    padding: 0;*/
-/*    margin: 0;*/
-/*}*/
+
 .wrap{
     display: flex;
     border-bottom: 1px solid #d8d8d8;
-    padding: 80px 0px 80px 98px;
+    padding: 80px 170px 80px 98px;
+    width: 100%;
 }
+
 .wrap-img img{
     width: 270px;
     height: 270px;
 }
 .wrap-info{
     margin-left: 30px;
-    width: 73%;
 }
+
 .title{
     font-size: 36px;
     font-weight: 600;
     line-height: 1.11;
     margin-bottom: 30px;
 }
+
 .description{
     font-family: "Open Sans Regular", sans-serif;
     font-size: 21px;
     line-height: 1.43;
     margin-bottom: 30px;
-    width: 80%;
 }
+
 .main-info{
     display: flex;
     font-family: "Open Sans Regular", sans-serif;
     margin-bottom: 30px;
     font-size: 21px;
 }
+
 .result{
     margin-right: 50px;
+}
+
+.sum div:last-child,
+.rate div:last-child{
+    font-family: "Open Sans Semibold", sans-serif;
+    font-size: 32px;
+}
+
+.add-remove div{
+    margin-bottom: 10px;
+}
+
+.button{
+    font-family: "Open Sans Semibold", sans-serif;
+    font-size: 17px;
+    border-radius: 2px;
+    height: 50px;
+    line-height: 1.47;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.open {
+    width: 36%;
+    background-color: black;
+    color: white;
+    border-style: none;
+}
+.info {
+    width: 26%;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+.denial:before{
+    content: '';
+    background-image: url("./x.svg");
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 2px;
+}
+.check:before{
+    content: '';
+    background-image: url("./check.svg");
+    width: 12px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 2px;
 }

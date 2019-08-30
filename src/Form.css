@@ -15,10 +15,11 @@
 }
 
 .wrap-all{
-    /*padding: 80px 98px;*/
     font-family: "Open Sans Semibold", sans-serif;
     font-size: 17px;
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
+    max-width: 1366px;
+    margin: 0 auto;
 }
