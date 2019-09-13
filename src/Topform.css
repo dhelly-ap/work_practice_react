@@ -1,0 +1,173 @@
+@font-face {
+    font-family: 'Open Sans Regular';
+    src: url("./fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Open Sans Semibold';
+    src: url("./fonts/OpenSans-SemiBold.ttf") format("truetype");
+}
+.wrap-head{
+    font-family: "Open Sans Regular", sans-serif;
+    font-size: 17px;
+}
+.wrap-inputs{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+.sign{
+    font-size: 14px;
+    line-height: 1.43;
+    color: #999999;
+}
+
+.wrap-sign span:last-child{
+    float: right;
+}
+
+.input{
+    width: 570px;
+    height: 60px;
+    border: 1px solid #dbdbdb;
+    position: relative;
+}
+.money {
+    margin-right: 40px;
+}
+.input label{
+    position: absolute;
+    top: 17px;
+    left: 12px;
+}
+.input input{
+    position: absolute;
+    border: none;
+    right: 72px;
+    height: 57px;
+    text-align: right;
+    cursor: text;
+    margin-right: 18px;
+    font-family: "Open Sans Semibold", sans-serif;
+    font-size: 21px;
+    line-height: 1.43;
+    width: 50%;
+}
+
+.input input:last-child{
+    right: 0;
+    margin: 0;
+}
+input:focus{
+    outline: none;
+}
+.currency{
+    position: absolute;
+    right: 0px;
+    width: 72px;
+    height: 57px;
+    border: none;
+    border-left: inherit;
+}
+
+.checkboxes{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.conditions,
+.check {
+    display: none;
+}
+
+.label{
+    margin-right: 37px;
+    line-height: 20px;
+    cursor: pointer;
+
+}
+
+.label:before{
+    content: "";
+    display: inline-block;
+    border: 1px solid #999999;
+    vertical-align: middle;
+    background-color: white;
+    width: 20px;
+    margin-top: -4px;
+    height: 20px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.check:checked + .label:before {
+    background-image: url("./check1.svg");
+}
+
+
+
+@media (max-width: 1365px) {
+    .input{
+        width: 456px;
+    }
+}
+
+@media (max-width: 1023px){
+    .input{
+        width: 334px;
+        margin-top: 30px;
+    }
+    .input label{
+        top: -32px;
+        left: 0;
+    }
+
+    .money {
+        margin-right: 20px;
+    }
+    .input input,
+    .input input:last-child{
+        left: 0px;
+        text-align: left;
+        margin-left: 12px;
+    }
+
+    .label{
+        font-size: 14px;
+    }
+}
+@media (max-width: 767px){
+    .input{
+        width: 280px;
+    }
+    .period{
+        margin-top: 30px;
+    }
+    .wrap-inputs {
+        margin: 30px 0;
+    }
+
+    .conditions{
+        display: block;
+    }
+
+    .conditions:after{
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 10px;
+        height: 10px;
+        box-sizing: border-box;
+        background-image: url("./arrow.svg");
+        margin-left: 10px;
+
+    }
+    .wrap-box{
+        padding-bottom: 20px;
+        display: none;
+    }
+
+    .wrap-box:last-child{
+        padding-bottom: 0;
+    }
+}

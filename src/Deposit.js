@@ -12,15 +12,16 @@ export default function Deposit(props) {
     });
 
     return (
-            <div className={'wrap'}>
-                <div className={'wrap-img'}><img src={props.img} /></div>
+        <div className={'wrap-with-border-product'}>
+            <div className={'wrap-product'}>
+                <div className={'wrap-img'}><img src={props.img}/></div>
                 <div className={'wrap-info'}>
                     <h3 className={'title'}>{props.title}</h3>
                     <div className={'description'}>{props.description}</div>
                     <div className={'main-info'}>
                         <div className={'result sum'}>
                             <div>Вы получите</div>
-                            <div>{formatter.format((result*(props.rate/100)) + result)}</div>
+                            <div>{formatter.format((result * (props.rate / 100)) + result)}</div>
                         </div>
                         <div className={'result rate'}>
                             <div>Ставка</div>
@@ -41,5 +42,5 @@ export default function Deposit(props) {
                     <button className={'info button'}>Подробнее</button>
                 </div>
             </div>
-    );
+        </div> );
 }
