@@ -1,6 +1,6 @@
 import React from 'react';
-import Form from './Form.js';
-import content from "./ProductList.json";
+import Form from '../Components/Form/Form.js';
+import content from "../ProductList.json";
 
 
 const params = {

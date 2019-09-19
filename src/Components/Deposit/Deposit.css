@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Open Sans Semibold';
-    src: url("./fonts/OpenSans-SemiBold.ttf") format("truetype");
+    src: url("../../fonts/OpenSans-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: 'Open Sans Regular';
-    src: url("./fonts/OpenSans-Regular.ttf") format("truetype");
+    src: url("../../fonts/OpenSans-Regular.ttf") format("truetype");
 }
 .wrap-with-border-product{
     font-family: "Open Sans Semibold", sans-serif;
@@ -91,7 +91,7 @@
 }
 .without:before{
     content: '';
-    background-image: url("./x.svg");
+    background-image: url("../../svg/x.svg");
     width: 9px;
     height: 9px;
     display: inline-block;
@@ -100,7 +100,7 @@
 }
 .with:before{
     content: '';
-    background-image: url("./check.svg");
+    background-image: url("../../svg/check.svg");
     width: 12px;
     height: 10px;
     display: inline-block;

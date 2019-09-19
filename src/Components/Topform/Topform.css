@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Open Sans Regular';
-    src: url("./fonts/OpenSans-Regular.ttf") format("truetype");
+    src: url("../../fonts/OpenSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
     font-family: 'Open Sans Semibold';
-    src: url("./fonts/OpenSans-SemiBold.ttf") format("truetype");
+    src: url("../../fonts/OpenSans-SemiBold.ttf") format("truetype");
 }
 .wrap-head{
     font-family: "Open Sans Regular", sans-serif;
@@ -100,7 +100,7 @@ input:focus{
 }
 
 .check:checked + .label:before {
-    background-image: url("./check1.svg");
+    background-image: url("../../svg/check1.svg");
 }
 
 
@@ -157,7 +157,7 @@ input:focus{
         width: 10px;
         height: 10px;
         box-sizing: border-box;
-        background-image: url("./arrow.svg");
+        background-image: url("../../svg/arrow.svg");
         margin-left: 10px;
 
     }

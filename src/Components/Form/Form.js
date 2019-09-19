@@ -1,7 +1,7 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
-import Deposit from './Deposit.js';
-import TopForm from './Topform';
+import Deposit from '../Deposit/Deposit.js';
+import TopForm from '../Topform/Topform';
 import './Form.css';
 
 export default class Form extends React.Component {
