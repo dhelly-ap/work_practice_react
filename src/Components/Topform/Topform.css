@@ -40,7 +40,8 @@
     top: 17px;
     left: 12px;
 }
-.input input{
+.input-money,
+.input-period{
     position: absolute;
     border: none;
     right: 72px;
@@ -54,13 +55,26 @@
     width: 50%;
 }
 
-.input input:last-child{
+.input-period{
     right: 0;
-    margin: 0;
+    top: 12px;
+    height: auto;
 }
+
+.input-period-value{
+    width: 24px;
+    margin-right: 8px;
+    border: none;
+    display: inline-block;
+    font-size: inherit;
+    font-family: inherit;
+
+}
+
 input:focus{
     outline: none;
 }
+
 .currency{
     position: absolute;
     right: 0px;
@@ -124,8 +138,8 @@ input:focus{
     .money {
         margin-right: 20px;
     }
-    .input input,
-    .input input:last-child{
+    .input-money,
+    .input-period{
         left: 0px;
         text-align: left;
         margin-left: 12px;
@@ -169,4 +183,5 @@ input:focus{
     .wrap-box:last-child{
         padding-bottom: 0;
     }
+
 }

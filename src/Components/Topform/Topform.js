@@ -2,7 +2,18 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import "./Topform.css"
 
-export default class TopForm extends React.Component{
+export default class TopForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onKeyDownChange = this.onKeyDownChange.bind(this);
+        this.onInputPeriodClick = this.onInputPeriodClick.bind(this);
+        this.onInputPeriodChange = this.onInputPeriodChange.bind(this);
+        this.state = {
+            input_period_result: "1 год 1 месяц",
+            input_period_value: 13
+        };
+    }
+
 
     onKeyDownChange(e){
         if (!((e.key >= '0' && e.key <= '9')
@@ -15,6 +26,26 @@ export default class TopForm extends React.Component{
             || e.key === 'Backspace'))
             e.preventDefault();
     };
+    onInputPeriodClick (e){
+       let value = e.target.innerHTML;
+       let value_arr = value.split(" ");
+       let result = Number(value_arr[0]) * 12 + Number(value_arr[2]);
+
+       value = <InputPeriod
+           result={result}
+           onKeyDownChange={this.state.input_period_value}
+           onInputPeriodChange={this.onInputPeriodChange}
+       />;
+
+        this.setState({input_period_result: value});
+    }
+    onInputPeriodChange(e){
+        let value = e.target.value;
+        value = Number(value);
+        if (value > 37)
+            value = 36;
+        this.setState({input_period_value: value});
+    }
 
     render() {
         const { checkboxes, input_money } = this.props;
@@ -43,7 +74,10 @@ export default class TopForm extends React.Component{
                     <div className={'period'}>
                         <div className={'input'}>
                             <label>На срок</label>
-                            <input/>
+                            <span className={"input-period"}
+                                  onClick={this.onInputPeriodClick}>
+                                {this.state.input_period_result}
+                            </span>
                         </div>
                         <div className={'wrap-sign'}>
                             <span className={'sign'}>3 мес</span>
@@ -93,6 +127,21 @@ class Checkboxes extends React.Component {
                 </label>
             </div>
     );
+    }
+}
+class InputPeriod extends React.Component{
+    render() {
+        return(
+            <div>
+                <input
+                    className={'input-period-value'}
+                    value={this.props.result}
+                    onKeyDown={this.props.onKeyDownChange}
+                    onChange={this.props.onInputPeriodChange}
+                />
+                <span>месяцев</span>
+            </div>
+        )
     }
 }
 
