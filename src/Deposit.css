@@ -89,7 +89,7 @@
     color: black;
     border: 1px solid black;
 }
-.denial:before{
+.without:before{
     content: '';
     background-image: url("./x.svg");
     width: 9px;
@@ -98,7 +98,7 @@
     margin-right: 10px;
     margin-bottom: 2px;
 }
-.check:before{
+.with:before{
     content: '';
     background-image: url("./check.svg");
     width: 12px;

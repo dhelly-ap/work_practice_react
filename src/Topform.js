@@ -1,16 +1,36 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import "./Topform.css"
 
 export default class TopForm extends React.Component{
+
+    onKeyDownChange(e){
+        if (!((e.key >= '0' && e.key <= '9')
+            || e.key === 'ArrowLeft'
+            || e.key === 'ArrowRight'
+            || e.key === 'ArrowUp'
+            || e.key === 'ArrowDown'
+            || e.key === 'Delete'
+            || e.key === 'Tab'
+            || e.key === 'Backspace'))
+            e.preventDefault();
+    };
+
     render() {
+        const { checkboxes, input_money } = this.props;
+
         return(
             <div className={'wrap-head'}>
                 <div className={'wrap-inputs'} >
                     <div className={'money'}>
                         <div className={'input'}>
                             <label>Хочу вложить</label>
-                            <input/>
+                            <input className={"input-money"}
+                                   onChange={this.props.onInputMoney}
+                                   onKeyDown={this.onKeyDownChange}
+                                   onBlur={this.props.onBlurChange}
+                                   value={input_money}
+                            />
                             <select className={'currency'}>
                                 <option>₽</option>
                                 <option>$</option>
@@ -33,14 +53,46 @@ export default class TopForm extends React.Component{
                 </div>
                 <div className={'checkboxes'}>
                     <div className={'conditions'}>Дополнительные условия</div>
-                    <div className={'wrap-box'}>
-                        <input className={'check'} type={'checkbox'} id={'add'}/>
-                        <label className={'label'} for={'add'}>Хочу пополнять</label>
-                    </div>
-                    <div className={'wrap-box'}>
-                        <input className={'check'} type={'checkbox'} id={'removing'}/>
-                        <label className={'label'} for={'removing'}>Хочу снимать</label>
-                    </div>
+                    {checkboxes.map((item, index) =>
+                        <Checkboxes
+                            key={index}
+                            checkbox={item.text}
+                            index={item.id}
+                            onCheckChange={this.props.onCheckChange}/>)}
                 </div>
             </div>);
-}}
+}};
+
+class Checkboxes extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        let check = e.target.checked;
+        let check_id = e.target.id;
+        this.props.onCheckChange(check, check_id);
+    }
+
+    render () {
+        const { checkbox, index } = this.props;
+    return (
+            <div className={'wrap-box'}>
+                <input
+                    className={'check'}
+                    type={'checkbox'}
+                    id={index}
+                    onChange={this.handleChange}
+                />
+                <label
+                    className={'label'}
+                    htmlFor={index}
+                >
+                    {checkbox}
+                </label>
+            </div>
+    );
+    }
+}
+
