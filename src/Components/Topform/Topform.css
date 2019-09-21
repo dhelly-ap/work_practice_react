@@ -52,13 +52,14 @@
     font-family: "Open Sans Semibold", sans-serif;
     font-size: 21px;
     line-height: 1.43;
-    width: 50%;
+    width: auto;
 }
 
 .input-period{
     right: 0;
     top: 12px;
     height: auto;
+    cursor: pointer;
 }
 
 .input-period-value{
@@ -68,6 +69,7 @@
     display: inline-block;
     font-size: inherit;
     font-family: inherit;
+    text-align: right;
 
 }
 
@@ -183,5 +185,7 @@ input:focus{
     .wrap-box:last-child{
         padding-bottom: 0;
     }
-
+    .input-period{
+        width: auto;
+    }
 }

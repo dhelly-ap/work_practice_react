@@ -1,5 +1,5 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+
 import Deposit from '../Deposit/Deposit.js';
 import TopForm from '../Topform/Topform';
 import './Form.css';
@@ -7,9 +7,9 @@ import './Form.css';
 export default class Form extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleCheckChange = this.handleCheckChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.onBlurChange = this.onBlurChange.bind(this);
+        this.handleBlurChange = this.handleBlurChange.bind(this);
         this.state = {
             adding: false,
             removing: false,
@@ -18,7 +18,7 @@ export default class Form extends React.Component {
             input_money: 100000
         };
     }
-    handleChange (check, check_id){
+    handleCheckChange (check, check_id){
         this.setState({check_id: check_id});
 
         switch (check_id) {
@@ -34,6 +34,26 @@ export default class Form extends React.Component {
         }
     };
 
+    handleInputChange (e){
+        let value = (e.target.value);
+        value = Number(value);
+        console.log(value);
+        if (value > 99999999)
+           value = 99999999;
+        this.setState({input_money: value});
+
+        // let price = value;
+        // price = price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
+
+    }
+    handleBlurChange(e){
+        let value = e.target.value;
+        value = Number(value);
+        if (value < 1000)
+            value = 1000;
+        this.setState({input_money: value});
+    }
+
     fun_filter(arr, value){
         let new_arr = arr;
 
@@ -46,25 +66,7 @@ export default class Form extends React.Component {
             }
         }
         return new_arr;
-      };
-    handleInputChange (e){
-        let value = e.target.value;
-        value = Number(value);
-        if (value > 99999999)
-           value = 99999999;
-        this.setState({input_money: value});
-
-        // let price = value;
-        // price = price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
-
-    }
-    onBlurChange(e){
-        let value = e.target.value;
-        value = Number(value);
-        if (value < 1000)
-            value = 1000;
-        this.setState({input_money: value});
-    }
+    };
 
     render() {
         const {
@@ -80,9 +82,9 @@ export default class Form extends React.Component {
                         <TopForm
                             checkboxes={checkboxes}
                             input_money={input_money}
-                            onCheckChange={this.handleChange}
+                            onCheckChange={this.handleCheckChange}
                             onInputMoney={this.handleInputChange}
-                            onBlurChange={this.onBlurChange}
+                            onBlurChange={this.handleBlurChange}
                         />
                     </div>
                 </div>
