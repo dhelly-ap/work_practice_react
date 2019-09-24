@@ -7,6 +7,8 @@ import './Form.css';
 export default class Form extends React.Component {
     constructor(props) {
         super(props);
+        Form.onKeyDownChange = Form.onKeyDownChange.bind(this);
+        this.onKeyDownHandle = this.onKeyDownHandle.bind(this);
         this.handleCheckChange = this.handleCheckChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleBlurChange = this.handleBlurChange.bind(this);
@@ -18,6 +20,49 @@ export default class Form extends React.Component {
             input_money: 100000
         };
     }
+    static onKeyDownChange(e){
+        if (!((e.key >= '0' && e.key <= '9')
+            || e.key === 'ArrowLeft'
+            || e.key === 'ArrowRight'
+            || e.key === 'ArrowUp'
+            || e.key === 'ArrowDown'
+            || e.key === 'Delete'
+            || e.key === 'Tab'
+            || e.key === 'Backspace'
+            || e.key === 'Enter'
+        ))
+            e.preventDefault();
+    };
+
+    onKeyDownHandle(e){
+        Form.onKeyDownChange(e);
+        if (e.key === 'Enter')
+            this.handleBlurChange(e);
+    }
+
+    handleInputChange (e){
+        let value = (e.target.value);
+        value = parseInt(value.replace(/\s+/g, ''));
+        if (!value)
+            value = 0;
+
+        if (value > 99999999)
+           value = 99999999;
+        if (typeof value === "number")
+            this.setState({input_money: value});
+
+    }
+
+    handleBlurChange(e){
+        let value = e.target.value;
+        value = parseInt(value.replace(/\s+/g, ''));
+        if (!value)
+            value = 0;
+        if (value < this.props.sum_min)
+            value = this.props.sum_min;
+        this.setState({input_money: value});
+    }
+
     handleCheckChange (check, check_id){
         this.setState({check_id: check_id});
 
@@ -34,26 +79,6 @@ export default class Form extends React.Component {
         }
     };
 
-    handleInputChange (e){
-        let value = (e.target.value);
-        value = Number(value);
-        console.log(value);
-        if (value > 99999999)
-           value = 99999999;
-        this.setState({input_money: value});
-
-        // let price = value;
-        // price = price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
-
-    }
-    handleBlurChange(e){
-        let value = e.target.value;
-        value = Number(value);
-        if (value < 1000)
-            value = 1000;
-        this.setState({input_money: value});
-    }
-
     fun_filter(arr, value){
         let new_arr = arr;
 
@@ -69,10 +94,12 @@ export default class Form extends React.Component {
     };
 
     render() {
-        const {
-            title,
+        const { title,
             deposit_info,
-            checkboxes } = this.props;
+            checkboxes,
+            sum_min,
+            period_from,
+            period_to } = this.props;
         const { input_money } = this.state;
         return(
             <div className={'form-wrap-all'}>
@@ -82,9 +109,13 @@ export default class Form extends React.Component {
                         <TopForm
                             checkboxes={checkboxes}
                             input_money={input_money}
+                            sum_min={sum_min}
+                            period_from={period_from}
+                            period_to={period_to}
                             onCheckChange={this.handleCheckChange}
                             onInputMoney={this.handleInputChange}
                             onBlurChange={this.handleBlurChange}
+                            onKeyDownChange={this.onKeyDownHandle}
                         />
                     </div>
                 </div>

@@ -1,40 +1,16 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import Form from "../Form/Form"
 import "./Topform.css"
 
 export default class TopForm extends React.Component {
     constructor(props) {
         super(props);
-        TopForm.onKeyDownChange = TopForm.onKeyDownChange.bind(this);
         this.onInputPeriodClick = this.onInputPeriodClick.bind(this);
         this.onInputPeriodChange = this.onInputPeriodChange.bind(this);
-        this.handleFocus = this.handleFocus.bind(this);
         this.state = {
             input_period_result: "1 год 1 месяц",
         };
     }
-    handleFocus (e){
-        console.log(e.target.value);
-        console.log(typeof e.target.value);
-
-    }
-    // shouldComponentUpdate(nextProps) {
-    //     if (typeof this.props.input_money === "number")
-    //         return true;
-    //     return false;
-    // }
-
-    static onKeyDownChange(e){
-        if (!((e.key >= '0' && e.key <= '9')
-            || e.key === 'ArrowLeft'
-            || e.key === 'ArrowRight'
-            || e.key === 'ArrowUp'
-            || e.key === 'ArrowDown'
-            || e.key === 'Delete'
-            || e.key === 'Tab'
-            || e.key === 'Backspace'))
-            e.preventDefault();
-    };
 
     onInputPeriodClick (e){
        let value = e.target.innerHTML;
@@ -47,8 +23,8 @@ export default class TopForm extends React.Component {
 
        value = <InputPeriod
            result={result}
-           onKeyDownChange={TopForm.onKeyDownChange}
            onInputPeriodChange={this.onInputPeriodChange}
+           period_to={this.props.period_to}
        />;
         this.setState({input_period_result: value});
     }
@@ -91,9 +67,8 @@ export default class TopForm extends React.Component {
         this.setState({input_period_result: `${year} ${year_str} ${month} ${month_str}`});
     }
 
-
     render() {
-        const { checkboxes, input_money } = this.props;
+        const { checkboxes, input_money, sum_min, period_from, period_to } = this.props;
 
         return(
             <div className={'wrap-head'}>
@@ -103,19 +78,18 @@ export default class TopForm extends React.Component {
                             <label>Хочу вложить</label>
                             <input className={"input-money"}
                                    onChange={this.props.onInputMoney}
-                                   onKeyDown={TopForm.onKeyDownChange}
-                                   onBlur={this.props.handleBlurChange}
-                                   // value={input_money.toLocaleString()}
-                                   // onFocus={this.handleFocus}
-                                   value={input_money}
+                                   onKeyDown={this.props.onKeyDownChange}
+                                   onBlur={this.props.onBlurChange}
+                                   value={input_money.toLocaleString()}
                             />
-                            <select className={'currency'}>
-                                <option>₽</option>
-                                <option>$</option>
-                            </select>
+                            <div className={'currency'}>
+                                <span>₽</span>
+                            </div>
                         </div>
                         <div className={'sign'}>
-                            от 30 000 ₽ или от 1 000 $
+                            <span>от </span>
+                            <span>{sum_min}</span>
+                            <span> ₽</span>
                         </div>
                     </div>
                     <div className={'period'}>
@@ -127,19 +101,28 @@ export default class TopForm extends React.Component {
                             </span>
                         </div>
                         <div className={'wrap-sign'}>
-                            <span className={'sign'}>1 мес</span>
-                            <span className={'sign'}>3 года</span>
+                            <span className={'sign'}>
+                                <span>{period_from}</span>
+                                <span> мес</span>
+                            </span>
+                            <span className={'sign'}>
+                                <span>{period_to/12}</span>
+                                <span> года</span>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div className={'checkboxes'}>
-                    <div className={'conditions'}>Дополнительные условия</div>
+                    <label className={'condition_label'} htmlFor={'condition_check'}>Дополнительные условия</label>
+                    <input className={'condition_check'} id={'condition_check'} type={'checkbox'}/>
+                    <div className={'wrap-box'}>
                     {checkboxes.map((item, index) =>
                         <Checkboxes
                             key={index}
                             checkbox={item.text}
                             index={item.id}
                             onCheckChange={this.props.onCheckChange}/>)}
+                    </div>
                 </div>
             </div>);
 }};
@@ -159,7 +142,7 @@ class Checkboxes extends React.Component {
     render () {
         const { checkbox, index } = this.props;
     return (
-            <div className={'wrap-box'}>
+            <div className={'box'}>
                 <input
                     className={'check'}
                     type={'checkbox'}
@@ -181,12 +164,18 @@ class InputPeriod extends React.Component{
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
+        this.onKeyDownChange = this.onKeyDownChange.bind(this);
         this.focusTextInput = this.focusTextInput.bind(this);
         this.textInput = React.createRef();
         this.state = {
             input_value: this.props.result,
             month: "месяцев"
         };
+    }
+    onKeyDownChange (e){
+        Form.onKeyDownChange(e);
+        if (e.key === 'Enter')
+            this.handleBlur(e);
     }
     focusTextInput() {
         this.textInput.current.focus();
@@ -198,8 +187,8 @@ class InputPeriod extends React.Component{
     handleChange(e){
         let value = e.target.value;
         value = Number(value);
-        if (value > 37)
-            value = 36;
+        if (value > this.props.period_to)
+            value = this.props.period_to;
         this.setState({input_value: value});
         if (value === 1)
             this.setState({month: "месяц"});
@@ -220,7 +209,7 @@ class InputPeriod extends React.Component{
                 <input
                     className={'input-period-value'}
                     value={this.state.input_value}
-                    onKeyDown={TopForm.onKeyDownChange}
+                    onKeyDown={this.onKeyDownChange}
                     onChange={this.handleChange}
                     ref={this.textInput}
                     onBlur={this.handleBlur}

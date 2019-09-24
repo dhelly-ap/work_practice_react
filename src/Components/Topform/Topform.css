@@ -22,7 +22,7 @@
     color: #999999;
 }
 
-.wrap-sign span:last-child{
+.wrap-sign .sign:last-child{
     float: right;
 }
 
@@ -86,12 +86,21 @@ input:focus{
     border-left: inherit;
 }
 
-.checkboxes{
+.currency span{
+    position: absolute;
+    left: 15px;
+    top: 13px;
+    font-family: "Open Sans Semibold", sans-serif;
+    font-size: 21px;
+}
+
+.checkboxes, .wrap-box{
     display: flex;
     flex-wrap: wrap;
 }
 
-.conditions,
+.condition_label,
+.condition_check,
 .check {
     display: none;
 }
@@ -162,11 +171,12 @@ input:focus{
         margin: 30px 0;
     }
 
-    .conditions{
+    .condition_label{
         display: block;
+        margin-bottom: 20px;
     }
 
-    .conditions:after{
+    .condition_label:after{
         content: "";
         display: inline-block;
         vertical-align: middle;
@@ -177,13 +187,20 @@ input:focus{
         margin-left: 10px;
 
     }
+
     .wrap-box{
-        padding-bottom: 20px;
         display: none;
     }
 
     .wrap-box:last-child{
         padding-bottom: 0;
+    }
+    .box{
+        padding-bottom: 20px;
+    }
+
+    .condition_check:checked + .wrap-box{
+        display: block;
     }
     .input-period{
         width: auto;

@@ -11,8 +11,10 @@ const params = {
             {id : "adding", text : "Хочу пополнять"},
             {id : "removing", text : "Хочу снимать"},
             {id : "online", text : "Открою онлайн"}],
+    sum_min: 5000,
+    period_from: 1,
+    period_to: 36
 };
-
 
 function App() {
   return (
